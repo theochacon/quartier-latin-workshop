@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop de Linguagem Coreográfica — Quartier Latin</title>
+  <meta name="description" content="Workshop gratuito de Linguagem Coreográfica no Quartier Latin. 26 de junho, 10h, São Paulo. Para adultos de qualquer nível — sem experiência prévia necessária.">
+  <meta property="og:title" content="Workshop Gratuito de Linguagem Coreográfica — Quartier Latin">
+  <meta property="og:description" content="Uma manhã para redescobrir seu corpo através da dança. 26 de junho, 10h. Vagas limitadas e gratuitas.">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       FONTES LOCAIS
+    ═══════════════════════════════════════════════ */
+    @font-face {
+      font-family: 'Made Saonara';
+      src: url('assets/fonts/made-saonara.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Made Canvas';
+      src: url('assets/fonts/made-canvas-light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Made Canvas';
+      src: url('assets/fonts/made-canvas-black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('assets/fonts/montserrat-light.ttf') format('truetype');
+      font-weight: 300;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('assets/fonts/montserrat-regular.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('assets/fonts/montserrat-semibold.ttf') format('truetype');
+      font-weight: 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('assets/fonts/montserrat-bold.ttf') format('truetype');
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESET & TOKENS
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bordeaux:     #5C1C18;
+      --bordeaux-v:   #6E2523;
+      --charcoal:     #242424;
+      --off-white:    #F2F2F2;
+      --white:        #FFFFFF;
+      --black:        #000000;
+
+      --ff-saonara:  'Made Saonara', Georgia, serif;
+      --ff-canvas:   'Made Canvas', Georgia, serif;
+      --ff-body:     'Montserrat', system-ui, sans-serif;
+
+      --pad: clamp(72px, 9vw, 128px);
+      --w:   1160px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--charcoal);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ─── container ─── */
+    .wrap {
+      width: 100%;
+      max-width: var(--w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    /* ─── eyebrow label ─── */
+    .eye {
+      font-family: var(--ff-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      display: block;
+    }
+    .eye--light { color: rgba(255,255,255,0.55); }
+
+    /* ─── display headlines ─── */
+    .title {
+      font-family: var(--ff-saonara);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--black);
+    }
+    .title--white { color: var(--white); }
+    .title--bordeaux { color: var(--bordeaux); }
+
+    /* ─── rule ─── */
+    .rule {
+      width: 40px; height: 2px;
+      background: var(--bordeaux);
+      margin: 20px 0;
+    }
+    .rule--center { margin: 20px auto; }
+    .rule--light { background: rgba(255,255,255,0.35); }
+
+    /* ─── reveal animations ─── */
+    .r {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.16,1,.3,1),
+                  transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .r.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+    .d4 { transition-delay: .32s; }
+
+    /* ─── placeholder photo ─── */
+    .ph {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+      background: var(--off-white);
+    }
+    .ph span {
+      font-size: 9.5px; letter-spacing: .22em;
+      text-transform: uppercase; color: #aaa;
+    }
+    .ph--dk { background: rgba(255,255,255,0.06); }
+    .ph--dk span { color: rgba(255,255,255,0.2); }
+
+    /* ═══════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════ */
+    .nav {
+      position: fixed; inset: 0 0 auto;
+      z-index: 200;
+      padding: 18px 0;
+      transition: background .35s, box-shadow .35s, padding .35s;
+    }
+    .nav.solid {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 42px; width: auto; }
+
+    /* CTA pill */
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bordeaux);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 0;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .btn-nav:hover { background: var(--bordeaux-v); transform: translateY(-1px); }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      background: var(--charcoal);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    /* Foto — fundo total do hero */
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    /* Gradiente: charcoal sólido à esquerda, transparente à direita */
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(36,36,36,1)    0%,
+        rgba(36,36,36,0.96) 30%,
+        rgba(36,36,36,0.68) 52%,
+        rgba(36,36,36,0.22) 72%,
+        rgba(36,36,36,0)    100%
+      );
+    }
+    /* Linha bordeaux vertical decorativa */
+    .hero-vline {
+      position: absolute;
+      top: 12%; bottom: 12%;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--bordeaux) 30%, var(--bordeaux) 70%, transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Conteúdo hero */
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 130px 0 90px; width: 100%;
+    }
+    .hero-copy { max-width: 56%; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--bordeaux);
+      background: rgba(92,28,24,0.15);
+      border: 1px solid rgba(92,28,24,0.4);
+      font-size: 9.5px; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      padding: 7px 14px;
+      margin-bottom: 36px;
+    }
+    .hero-tag::before {
+      content: ''; width: 5px; height: 5px;
+      background: var(--bordeaux); border-radius: 50%; flex-shrink: 0;
+    }
+
+    .hero-h1 {
+      font-family: var(--ff-saonara);
+      font-size: clamp(52px, 6.5vw, 100px);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--bordeaux);
+    }
+
+    .hero-sub {
+      font-family: var(--ff-body);
+      font-size: clamp(15px, 1.6vw, 20px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 48px;
+    }
+
+    /* Info do evento */
+    .hero-info {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      margin-bottom: 44px;
+    }
+    .hero-info-item {
+      display: flex; flex-direction: column;
+    }
+    .hero-info-item strong {
+      display: block;
+      font-family: var(--ff-saonara);
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.05;
+    }
+    .hero-info-item span {
+      font-size: 10px; font-weight: 400;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-top: 4px; display: block;
+    }
+
+    /* CTAs */
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--bordeaux);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      text-decoration: none;
+      padding: 17px 36px;
+      transition: background .22s, transform .22s, box-shadow .22s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--bordeaux-v);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(92,28,24,0.45);
+    }
+
+    .btn-ghost {
+      font-family: var(--ff-body);
+      font-size: 11px; font-weight: 400;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      background: none; border: none; cursor: pointer;
+      transition: color .2s;
+      padding: 0;
+    }
+    .btn-ghost:hover { color: rgba(255,255,255,0.85); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .scroll-bar {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--bordeaux), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .hero-scroll span {
+      font-size: 8.5px; letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+    }
+    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    /* ═══════════════════════════════════════════════
+       METODOLOGIA
+    ═══════════════════════════════════════════════ */
+    .s-meta { padding: var(--pad) 0; background: var(--white); }
+    .meta-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 7vw, 96px); align-items: center;
+    }
+
+    /* Bloco visual com grafismo */
+    .meta-vis { position: relative; }
+    .meta-photo {
+      width: 100%; aspect-ratio: 4/5;
+      position: relative; overflow: hidden;
+    }
+    .meta-photo .ph { height: 100%; }
+    /* Barra bordeaux lateral */
+    .meta-photo::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 6px;
+      background: var(--bordeaux);
+    }
+    /* Quadrado decorativo bordeaux outline */
+    .meta-deco-1 {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      width: 80px; height: 80px;
+      border: 1px solid var(--bordeaux);
+    }
+    /* Retângulo preto pequeno */
+    .meta-deco-2 {
+      position: absolute;
+      bottom: -24px; right: 32px;
+      width: 40px; height: 40px;
+      background: var(--charcoal);
+    }
+
+    .meta-content .eye { margin-bottom: 16px; }
+    .meta-content .title {
+      font-size: clamp(38px, 4.2vw, 60px);
+      margin-bottom: 8px;
+    }
+    .meta-body {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.85; color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+    .meta-body strong { font-weight: 600; color: var(--black); }
+    .meta-placeholder {
+      border-left: 4px solid var(--bordeaux);
+      padding: 14px 18px;
+      background: var(--off-white);
+      font-size: 12px; font-style: italic;
+      color: #888; letter-spacing: .01em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       PILARES
+    ═══════════════════════════════════════════════ */
+    .s-pilares {
+      padding: var(--pad) 0;
+      background: var(--charcoal);
+      position: relative; overflow: hidden;
+    }
+
+    /* Grafismo de fundo — retângulo bordeaux + linha */
+    .pilares-geo {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .pg-rect {
+      position: absolute;
+      top: 0; right: 0;
+      width: 22%; height: 100%;
+      background: var(--bordeaux);
+      opacity: 0.12;
+    }
+    .pg-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px; background: rgba(255,255,255,0.06);
+    }
+
+    .pilares-head { text-align: center; margin-bottom: clamp(48px,6vw,80px); }
+    .pilares-head .eye { margin-bottom: 16px; }
+    .pilares-head .title { font-size: clamp(36px, 4vw, 58px); }
+
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 2px;
+    }
+    @media (min-width: 1024px) { .pilares-grid { grid-template-columns: repeat(4,1fr); } }
+
+    .pilar {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: clamp(20px,3vw,36px);
+      padding-top: clamp(140px, 15vw, 210px);
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .pilar::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--bordeaux);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .pilar:hover { background: rgba(255,255,255,0.065); }
+    .pilar:hover::before { transform: scaleX(1); }
+
+    .pilar-n {
+      position: absolute;
+      top: 0; left: 0;
+      font-family: var(--ff-saonara);
+      font-size: clamp(130px, 14vw, 200px);
+      font-weight: 400;
+      color: var(--bordeaux);
+      line-height: 0.88;
+      user-select: none;
+      padding: 0; margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .pilar-title {
+      font-family: var(--ff-body);
+      font-size: 18px; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px; line-height: 1.2;
+      letter-spacing: .02em;
+    }
+    .pilar-desc {
+      font-size: 13px; font-weight: 300;
+      line-height: 1.82; color: rgba(255,255,255,0.42);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PARA QUEM
+    ═══════════════════════════════════════════════ */
+    .s-pq { padding: var(--pad) 0; background: var(--off-white); }
+    .pq-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,7vw,96px); align-items: start;
+    }
+    .pq-content .eye { margin-bottom: 16px; }
+    .pq-content .title { font-size: clamp(36px,4vw,56px); margin-bottom: 6px; }
+    .pq-intro {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.85; color: var(--charcoal);
+      margin-bottom: 40px;
+    }
+    .pq-list { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+    .pq-item { display: flex; align-items: flex-start; gap: 16px; }
+    /* Square check mark — brand style */
+    .pq-sq {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--bordeaux);
+      display: grid; place-items: center;
+      margin-top: 2px;
+    }
+    .pq-sq svg { width: 13px; height: 13px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+    .pq-text strong {
+      display: block; font-size: 14px; font-weight: 700;
+      color: var(--black); margin-bottom: 3px;
+    }
+    .pq-text span { font-size: 13px; font-weight: 300; color: #666; line-height: 1.65; }
+
+    .pq-vis { position: relative; }
+    .pq-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+    .pq-photo .ph { height: 100%; }
+    .pq-badge {
+      position: absolute; bottom: 28px; left: -22px;
+      background: var(--bordeaux); color: var(--white);
+      padding: 22px 28px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+    .pq-badge strong {
+      display: block;
+      font-family: var(--ff-canvas);
+      font-size: 36px; font-weight: 900; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pq-badge span {
+      font-size: 9px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MARISA BALLARINI
+    ═══════════════════════════════════════════════ */
+    .s-marisa {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 58% 42%;
+      min-height: 680px;
+    }
+    .marisa-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .marisa-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(18%);
+      transition: filter .6s ease;
+    }
+    .marisa-photo:hover img { filter: grayscale(0%); }
+    /* Barra bordeaux vertical na divisão */
+    .marisa-photo::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 4px;
+      background: var(--bordeaux);
+    }
+    .marisa-content {
+      padding: clamp(48px, 6vw, 88px) clamp(40px, 5vw, 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    /* Grafismo numérico decorativo de fundo */
+    .marisa-content::before {
+      content: 'MB';
+      position: absolute;
+      bottom: -20px; right: -10px;
+      font-family: var(--ff-saonara);
+      font-size: 180px;
+      line-height: 1;
+      color: rgba(255,255,255,0.03);
+      pointer-events: none;
+      user-select: none;
+    }
+    .marisa-content .eye--light { margin-bottom: 20px; }
+    .marisa-name {
+      font-family: var(--ff-saonara);
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+    .marisa-subtitle {
+      font-family: var(--ff-body);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .marisa-rule {
+      width: 40px; height: 2px;
+      background: var(--bordeaux);
+      margin-bottom: 28px;
+    }
+    .marisa-bio {
+      font-family: var(--ff-body);
+      font-size: 14px; font-weight: 300;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.58);
+    }
+    .marisa-placeholder {
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid rgba(92,28,24,0.6);
+      padding: 14px 18px;
+      font-size: 12px; font-style: italic;
+      color: rgba(255,255,255,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .s-marisa { grid-template-columns: 1fr; }
+      .marisa-photo { min-height: 340px; }
+      .marisa-photo::after { top: auto; right: 0; bottom: 0; left: 0; width: 100%; height: 4px; }
+      .marisa-content::before { font-size: 100px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       DEPOIMENTOS
+    ═══════════════════════════════════════════════ */
+    .s-dep { padding: var(--pad) 0; background: var(--white); }
+    .dep-head { text-align: center; margin-bottom: clamp(48px,6vw,80px); }
+    .dep-head .eye { margin-bottom: 16px; }
+    .dep-head .title { font-size: clamp(36px,4vw,58px); }
+
+    .dep-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+
+    .dep-card {
+      background: var(--off-white);
+      padding: clamp(28px,3.5vw,44px);
+      position: relative;
+      transition: transform .3s, box-shadow .3s;
+      border-top: 4px solid transparent;
+    }
+    .dep-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      border-top-color: var(--bordeaux);
+    }
+
+    .dep-q {
+      font-family: var(--ff-saonara);
+      font-size: 96px; line-height: .7;
+      color: var(--bordeaux); opacity: .18;
+      position: absolute; top: 16px; left: 22px;
+      user-select: none;
+    }
+    .dep-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+    .dep-stars svg { width: 12px; height: 12px; fill: var(--bordeaux); }
+    .dep-text {
+      font-family: var(--ff-canvas);
+      font-size: clamp(16px,1.6vw,20px);
+      font-weight: 300; line-height: 1.68;
+      color: var(--charcoal); margin-bottom: 14px;
+    }
+    .dep-note {
+      font-size: 9.5px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--bordeaux); opacity: .6;
+      margin-bottom: 18px;
+    }
+    .dep-author {
+      display: flex; align-items: center; gap: 12px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      padding-top: 18px;
+    }
+    .dep-avatar {
+      width: 40px; height: 40px;
+      background: var(--bordeaux);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .dep-avatar svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.7); }
+    .dep-info strong { display: block; font-size: 13px; font-weight: 700; color: var(--black); }
+    .dep-info span { font-size: 11.5px; font-weight: 300; color: #777; }
+
+    /* ═══════════════════════════════════════════════
+       SOBRE
+    ═══════════════════════════════════════════════ */
+    .s-sobre {
+      padding: var(--pad) 0;
+      background: var(--bordeaux);
+      position: relative; overflow: hidden;
+    }
+    /* Grafismo geométrico de fundo */
+    .sobre-geo { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .sg-rect-out {
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 320px; height: 320px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .sg-rect-fill {
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 180px; height: 180px;
+      background: rgba(0,0,0,0.15);
+    }
+    .sg-line {
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 1px; background: rgba(255,255,255,0.07);
+    }
+
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,7vw,96px); align-items: center;
+      position: relative; z-index: 1;
+    }
+    .sobre-content .eye--light { margin-bottom: 16px; }
+    .sobre-content .title { font-size: clamp(36px,4vw,54px); }
+    .sobre-content .rule--light { margin: 20px 0; }
+    .sobre-body {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.88; color: rgba(255,255,255,0.72);
+    }
+    .sobre-placeholder {
+      background: rgba(0,0,0,0.15);
+      border-left: 4px solid rgba(255,255,255,0.25);
+      padding: 14px 18px; margin-top: 22px;
+      font-size: 12px; font-style: italic;
+      color: rgba(255,255,255,0.35);
+    }
+    .sobre-vis { display: flex; flex-direction: column; gap: 3px; }
+    .sobre-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
+    .sobre-img .ph--dk { height: 100%; border: 1px solid rgba(255,255,255,0.1); }
+    .sobre-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .stat {
+      background: rgba(0,0,0,0.18);
+      padding: 22px 14px; text-align: center;
+    }
+    .stat strong {
+      display: block;
+      font-family: var(--ff-canvas);
+      font-size: 36px; font-weight: 900;
+      color: var(--white); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat span {
+      font-size: 9px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ═══════════════════════════════════════════════
+       FORMULÁRIO
+    ═══════════════════════════════════════════════ */
+    .s-form { padding: var(--pad) 0; background: var(--off-white); }
+    .form-wrap { max-width: 600px; margin: 0 auto; }
+    .form-head { text-align: center; margin-bottom: clamp(40px,5vw,68px); }
+    .form-head .eye { margin-bottom: 16px; }
+    .form-head .title { font-size: clamp(36px,4.5vw,62px); }
+
+    /* Evento pill */
+    .form-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--charcoal); color: var(--white);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 10px 20px; margin-bottom: 18px;
+    }
+    .form-pill::before {
+      content: ''; display: block;
+      width: 8px; height: 8px;
+      background: var(--bordeaux); flex-shrink: 0;
+    }
+    .form-sub { font-size: 14px; font-weight: 300; color: #666; line-height: 1.72; }
+
+    /* Card do form */
+    .form-card {
+      background: var(--white);
+      padding: clamp(32px,5vw,56px);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.04), 0 24px 64px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--bordeaux);
+    }
+
+    .fgroup { margin-bottom: 22px; }
+    .flabel {
+      display: block; font-size: 9.5px; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--charcoal); margin-bottom: 8px;
+    }
+    .flabel .req { color: var(--bordeaux); margin-left: 2px; }
+    .finput, .fselect {
+      width: 100%; padding: 14px 16px;
+      background: var(--off-white);
+      border: 1.5px solid transparent;
+      border-bottom-color: rgba(0,0,0,0.15);
+      font-family: var(--ff-body); font-size: 14px; font-weight: 300;
+      color: var(--charcoal);
+      transition: border-color .2s, background .2s;
+      outline: none; appearance: none; -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .finput::placeholder { color: #bbb; }
+    .finput:focus, .fselect:focus {
+      border-color: var(--bordeaux);
+      background: var(--white);
+    }
+    .finput.err { border-color: #b91c1c; }
+    .ferr { font-size: 11px; color: #b91c1c; margin-top: 5px; display: none; }
+    .ferr.on { display: block; }
+    .fsel-wrap { position: relative; }
+    .fsel-wrap::after {
+      content: ''; position: absolute;
+      right: 14px; top: 50%; transform: translateY(-50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #aaa;
+      pointer-events: none;
+    }
+
+    .btn-submit {
+      width: 100%; display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+      background: var(--charcoal); color: var(--white);
+      font-family: var(--ff-body); font-size: 11px; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: 18px 32px; margin-top: 32px;
+      border: none; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-submit::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--bordeaux);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease; z-index: 0;
+    }
+    .btn-submit:hover::before { transform: scaleX(1); }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .btn-submit span, .btn-submit svg { position: relative; z-index: 1; }
+    .btn-submit svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .form-note {
+      font-size: 11px; font-weight: 300;
+      color: #aaa; text-align: center; margin-top: 14px; line-height: 1.6;
+    }
+
+    /* Sucesso */
+    .form-ok { display: none; text-align: center; padding: 52px 24px; }
+    .form-ok.on { display: block; }
+    .ok-sq {
+      width: 72px; height: 72px;
+      background: var(--bordeaux);
+      display: grid; place-items: center;
+      margin: 0 auto 28px;
+      animation: popIn .5s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes popIn { from{transform:scale(.4);opacity:0} to{transform:scale(1);opacity:1} }
+    .ok-sq svg { width: 30px; height: 30px; stroke: white; fill: none; stroke-width: 2.5; }
+    .ok-title {
+      font-family: var(--ff-saonara);
+      font-size: 36px; color: var(--black); margin-bottom: 12px;
+    }
+    .ok-title em { font-style: normal; color: var(--bordeaux); }
+    .ok-text { font-size: 15px; font-weight: 300; color: #666; line-height: 1.72; max-width: 360px; margin: 0 auto; }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    .footer { background: var(--black); color: rgba(255,255,255,0.42); padding: clamp(56px,7vw,88px) 0 32px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: clamp(36px,5.5vw,72px); margin-bottom: 52px;
+    }
+    .footer-logo { height: 56px; width: auto; filter: brightness(0) invert(1); margin-bottom: 20px; }
+    .footer-brand p { font-size: 13px; font-weight: 300; line-height: 1.8; max-width: 280px; }
+    .footer-socials { display: flex; gap: 2px; margin-top: 22px; }
+    .fsoc {
+      width: 36px; height: 36px; background: rgba(255,255,255,0.06);
+      display: grid; place-items: center;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .fsoc:hover { background: var(--bordeaux); color: white; }
+    .fsoc svg { width: 15px; height: 15px; }
+    .fcol-title {
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .flinks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .flinks a {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color .2s;
+    }
+    .flinks a:hover { color: var(--bordeaux); }
+    .faddr { font-size: 13px; font-weight: 300; line-height: 1.8; }
+    .faddr p { margin-bottom: 6px; }
+    .faddr a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color .2s; }
+    .faddr a:hover { color: var(--bordeaux); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 26px; display: flex;
+      align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.2); }
+    .footer-bottom a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color .2s; }
+    .footer-bottom a:hover { color: var(--bordeaux); }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero-vline { display: none; }
+      .hero-copy { max-width: 100%; }
+      .hero-photo::after {
+        background: linear-gradient(
+          180deg,
+          rgba(36,36,36,0.85) 0%,
+          rgba(36,36,36,0.75) 100%
+        );
+      }
+      .meta-grid, .pq-grid, .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pq-vis { order: -1; }
+      .pq-badge { position: static; display: inline-block; margin-top: 16px; }
+      .dep-grid { grid-template-columns: 1fr; gap: 2px; }
+      .pilares-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-info { flex-direction: column; gap: 20px; }
+    }
+    @media (min-width: 769px) and (max-width: 1023px) {
+      .dep-grid { grid-template-columns: 1fr 1fr; }
+      .dep-grid .dep-card:last-child { grid-column: 1/-1; max-width: 50%; margin: 0 auto; width: 100%; }
+    }
+    @media (max-width: 420px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ NAVBAR ══════════════════════ -->
+<nav class="nav" id="navbar">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="https://www.quartierlatin.com.br/" class="nav-logo" target="_blank" rel="noopener" aria-label="Quartier Latin">
+        <img src="assets/img/ql-brasao-color.png" alt="Quartier Latin" class="nav-logo">
+      </a>
+      <a href="#inscricao" class="btn-nav">Quero me inscrever</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero" id="topo">
+
+  <!-- Foto de fundo full-width -->
+  <div class="hero-photo">
+    <img src="assets/img/hero.jpg" alt="Workshop de Linguagem Coreográfica — Quartier Latin">
+  </div>
+
+  <!-- Linha bordeaux decorativa -->
+  <div class="hero-vline" aria-hidden="true"></div>
+
+  <div class="hero-content wrap">
+    <div class="hero-copy">
+
+      <div class="hero-tag r">Workshop Gratuito</div>
+
+      <h1 class="hero-h1 r d1">
+        O corpo que<br>
+        você habita<br>
+        tem muito<br>
+        <em>a dizer.</em>
+      </h1>
+
+      <p class="hero-sub r d2">
+        Uma manhã dedicada à descoberta do movimento como linguagem —
+        sem experiência prévia, sem julgamentos.
+      </p>
+
+      <div class="hero-info r d3">
+        <div class="hero-info-item">
+          <strong>26 jun</strong>
+          <span>Quinta-feira</span>
+        </div>
+        <div class="hero-info-item">
+          <strong>10h</strong>
+          <span>Aprox. 2h</span>
+        </div>
+        <div class="hero-info-item">
+          <strong>São Paulo</strong>
+          <span>Local a confirmar</span>
+        </div>
+      </div>
+
+      <div class="hero-actions r d4">
+        <a href="#inscricao" class="btn-primary">Quero me inscrever</a>
+        <a href="#metodologia" class="btn-ghost">Saiba mais</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-bar"></div>
+    <span>Descubra</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ METODOLOGIA ══════════════════════ -->
+<section class="s-meta" id="metodologia">
+  <div class="wrap">
+    <div class="meta-grid">
+
+      <div class="meta-vis r">
+        <div class="meta-photo">
+          <img src="assets/img/metodologia.jpg" alt="Linguagem Coreográfica — Quartier Latin" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="meta-deco-1"></div>
+        <div class="meta-deco-2"></div>
+      </div>
+
+      <div class="meta-content">
+        <span class="eye r">Nossa Metodologia</span>
+        <h2 class="title r d1" style="font-size:clamp(38px,4.2vw,60px)">
+          Linguagem<br>Coreográfica
+        </h2>
+        <div class="rule r d2"></div>
+        <p class="meta-body r d2">
+          Desenvolvida ao longo de décadas de pesquisa pedagógica no Quartier Latin,
+          a Linguagem Coreográfica parte de uma premissa simples e profunda:
+          <strong>o movimento é uma forma de comunicação humana tão legítima quanto a palavra.</strong>
+        </p>
+        <p class="meta-body r d3">
+          Neste workshop, você não aprende passos — você aprende a escutar o próprio
+          corpo e a expressar através dele. Uma experiência que transforma a percepção
+          de quem somos e de como nos relacionamos com o espaço e com os outros.
+        </p>
+        <div class="meta-placeholder r d4">
+          [DESCRIÇÃO DA METODOLOGIA — substitua por texto oficial elaborado pela equipe pedagógica do Quartier Latin]
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ PILARES ══════════════════════ -->
+<section class="s-pilares" id="vivencias">
+  <div class="pilares-geo" aria-hidden="true">
+    <div class="pg-rect"></div>
+    <div class="pg-line"></div>
+  </div>
+  <div class="wrap">
+    <div class="pilares-head">
+      <span class="eye eye--light r">O que você vai vivenciar</span>
+      <h2 class="title title--white r d1">Quatro dimensões<br>de uma mesma experiência</h2>
+      <div class="rule rule--center rule--light r d2"></div>
+    </div>
+
+    <div class="pilares-grid">
+      <div class="pilar r">
+        <div class="pilar-n">01</div>
+
+        <h3 class="pilar-title">Consciência Corporal</h3>
+        <p class="pilar-desc">Um reencontro com o seu próprio corpo — percepção de ritmo, peso, fluxo e espaço que você carrega, mas talvez nunca tenha parado para escutar.</p>
+      </div>
+      <div class="pilar r d1">
+        <div class="pilar-n">02</div>
+
+        <h3 class="pilar-title">Expressão Criativa</h3>
+        <p class="pilar-desc">Ferramentas para transformar sentimentos, ideias e histórias em movimento — sem certo ou errado, sem comparações, apenas o que emerge genuinamente de você.</p>
+      </div>
+      <div class="pilar r d2">
+        <div class="pilar-n">03</div>
+
+        <h3 class="pilar-title">Técnica Coreográfica</h3>
+        <p class="pilar-desc">Fundamentos da composição coreográfica apresentados de forma acessível — os mesmos princípios dos bailarinos profissionais, ao seu alcance.</p>
+      </div>
+      <div class="pilar r d3">
+        <div class="pilar-n">04</div>
+
+        <h3 class="pilar-title">Presença e Comunidade</h3>
+        <p class="pilar-desc">A dança como encontro. Um espaço seguro para se mover ao lado de outros adultos que buscam algo mais do que exercício — buscam experiência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ PARA QUEM ══════════════════════ -->
+<section class="s-pq" id="para-quem">
+  <div class="wrap">
+    <div class="pq-grid">
+
+      <div class="pq-content">
+        <span class="eye r">Para quem é este workshop</span>
+        <h2 class="title r d1" style="font-size:clamp(36px,4vw,56px)">
+          Para quem sente<br>que o corpo<br>pede mais
+        </h2>
+        <div class="rule r d2"></div>
+        <p class="pq-intro r d2">
+          Este workshop é para adultos que nunca dançaram — e para quem dançou e quer
+          voltar. Para quem vive acelerado e quer desacelerar com propósito.
+        </p>
+        <ul class="pq-list">
+          <li class="pq-item r d1">
+            <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="pq-text">
+              <strong>Iniciantes absolutos</strong>
+              <span>Nenhuma experiência com dança é necessária — apenas a curiosidade de estar presente.</span>
+            </div>
+          </li>
+          <li class="pq-item r d2">
+            <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="pq-text">
+              <strong>Quem quer se reconectar com o corpo</strong>
+              <span>Profissionais que passam horas sentados e sentiram o corpo esquecido no cotidiano.</span>
+            </div>
+          </li>
+          <li class="pq-item r d3">
+            <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="pq-text">
+              <strong>Curiosos pela dança como arte</strong>
+              <span>Quem sempre quis entrar num estúdio, mas nunca soube por onde começar.</span>
+            </div>
+          </li>
+          <li class="pq-item r d4">
+            <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="pq-text">
+              <strong>Alunos e ex-alunos do Quartier Latin</strong>
+              <span>Uma oportunidade de aprofundar a experiência além das aulas regulares.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pq-vis r d2">
+        <div class="pq-photo">
+          <img src="assets/img/corpo-pede-mais.jpg" alt="Para quem é o workshop — Quartier Latin" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="pq-badge">
+          <strong>100%</strong>
+          <span>Gratuito</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ MARISA BALLARINI ══════════════════════ -->
+<section class="s-marisa" id="coreografa">
+
+  <div class="marisa-photo r">
+    <img src="assets/img/marisa.jpg" alt="Marisa Ballarini, coreógrafa do Quartier Latin">
+  </div>
+
+  <div class="marisa-content">
+    <span class="eye eye--light r">Quem ministra o workshop</span>
+    <h2 class="marisa-name r d1">Marisa<br>Ballarini</h2>
+    <p class="marisa-subtitle r d2">
+      Workshop Ministrado pela Coreógrafa<br>Multipremiada no Festival de Joinville
+    </p>
+    <div class="marisa-rule r d2"></div>
+    <div class="r d3">
+      <div class="marisa-placeholder">
+        [TEXTO SOBRE MARISA BALLARINI — trajetória, prêmios, visão artística e relação com a metodologia Linguagem Coreográfica]
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════ DEPOIMENTOS ══════════════════════ -->
+<section class="s-dep" id="depoimentos">
+  <div class="wrap">
+    <div class="dep-head">
+      <span class="eye r">Quem já vivenciou</span>
+      <h2 class="title r d1" style="font-size:clamp(36px,4vw,58px)">
+        Histórias de quem<br>deu o primeiro passo
+      </h2>
+      <div class="rule rule--center r d2"></div>
+    </div>
+
+    <div class="dep-grid">
+      <div class="dep-card r">
+        <div class="dep-q" aria-hidden="true">"</div>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Cheguei convicta de que dança não era para mim. Saí questionando por que demorei tanto para dar esse passo. A professora cria um espaço onde o corpo simplesmente quer se mover — sem pudor, sem ansiedade de acertar."</p>
+        <p class="dep-note">[Substituir pelo depoimento real]</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="dep-info">
+            <strong>Ana Paula R.</strong>
+            <span>Advogada, 41 anos — sem experiência prévia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card r d1">
+        <div class="dep-q" aria-hidden="true">"</div>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Há anos eu sabia que queria dançar, mas a vida foi empurrando isso para depois. O workshop me mostrou que não precisa de talento — precisa de disponibilidade. Duas horas depois eu já estava inscrito nas aulas."</p>
+        <p class="dep-note">[Substituir pelo depoimento real]</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="dep-info">
+            <strong>Marcelo T.</strong>
+            <span>Arquiteto, 38 anos — primeira experiência</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card r d2">
+        <div class="dep-q" aria-hidden="true">"</div>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Dancei dos 8 aos 15 anos e parei. Achei que o Quartier Latin seria técnico demais para uma retomada. Pelo contrário — a Linguagem Coreográfica me devolveu a leveza que eu esquecera que existia dentro de mim."</p>
+        <p class="dep-note">[Substituir pelo depoimento real]</p>
+        <div class="dep-author">
+          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="dep-info">
+            <strong>Fernanda K.</strong>
+            <span>Médica, 45 anos — ex-aluna retornando</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ SOBRE ══════════════════════ -->
+<section class="s-sobre" id="sobre">
+  <div class="sobre-geo" aria-hidden="true">
+    <div class="sg-rect-out"></div>
+    <div class="sg-rect-fill"></div>
+    <div class="sg-line"></div>
+  </div>
+  <div class="wrap">
+    <div class="sobre-grid">
+
+      <div class="sobre-content">
+        <span class="eye eye--light r">A escola</span>
+        <h2 class="title title--white r d1" style="font-size:clamp(36px,4vw,54px)">
+          Quartier Latin<br>desde 1980
+        </h2>
+        <div class="rule rule--light r d2"></div>
+        <p class="sobre-body r d2">
+          Há mais de quatro décadas, o Quartier Latin forma bailarinos e transforma vidas
+          através da arte da dança. Fundado com a convicção de que a dança é um direito
+          humano — não um privilégio — a escola construiu uma pedagogia única que
+          equilibra excelência técnica com profunda sensibilidade humana.
+        </p>
+        <div class="sobre-placeholder r d3">
+          [SOBRE A ESCOLA — substitua por texto oficial com história, proposta pedagógica e diferenciais do Quartier Latin]
+        </div>
+      </div>
+
+      <div class="sobre-vis r d2">
+        <div class="sobre-img">
+          <img src="assets/img/foto-institucional-1.jpg" alt="Quartier Latin — Escola de Dança" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+        </div>
+        <div class="sobre-stats">
+          <div class="stat">
+            <strong>45+</strong>
+            <span>Anos de história</span>
+          </div>
+          <div class="stat">
+            <strong>SP</strong>
+            <span>São Paulo</span>
+          </div>
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Histórias de vida</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ FORMULÁRIO ══════════════════════ -->
+<section class="s-form" id="inscricao">
+  <div class="wrap">
+    <div class="form-wrap">
+
+      <div class="form-head">
+        <span class="eye r">Inscrição gratuita</span>
+        <h2 class="title r d1" style="font-size:clamp(36px,4.5vw,62px)">
+          Reserve sua<br>vaga agora
+        </h2>
+        <div class="rule rule--center r d2"></div>
+        <div class="form-pill r d2">26 de junho · 10h · Gratuito</div>
+        <p class="form-sub r d3">
+          Vagas limitadas. Após a inscrição, enviaremos a confirmação e o endereço
+          exato pelo e-mail e WhatsApp informados.
+        </p>
+      </div>
+
+      <div class="form-card r">
+        <form id="wForm" novalidate>
+
+          <div class="fgroup">
+            <label class="flabel" for="fnome">Nome completo <span class="req">*</span></label>
+            <input type="text" id="fnome" name="nome" class="finput" placeholder="Seu nome completo" autocomplete="name">
+            <p class="ferr" id="err-nome">Por favor, informe seu nome completo.</p>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="femail">E-mail <span class="req">*</span></label>
+            <input type="email" id="femail" name="email" class="finput" placeholder="seu@email.com" autocomplete="email">
+            <p class="ferr" id="err-email">Por favor, informe um e-mail válido.</p>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="ftel">WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="ftel" name="whatsapp" class="finput" placeholder="(11) 9 0000-0000" autocomplete="tel" maxlength="16">
+            <p class="ferr" id="err-tel">Por favor, informe um número de WhatsApp válido.</p>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="forigem">Como você conheceu o Quartier Latin? <span class="req">*</span></label>
+            <div class="fsel-wrap">
+              <select id="forigem" name="origem" class="fselect finput">
+                <option value="">Selecione uma opção</option>
+                <option value="instagram">Instagram</option>
+                <option value="indicacao">Indicação de amigo</option>
+                <option value="google">Google</option>
+                <option value="aluno">Já sou aluno</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <p class="ferr" id="err-origem">Por favor, selecione uma opção.</p>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <span>Garantir minha vaga gratuita</span>
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <p class="form-note">Seus dados são usados exclusivamente para confirmação da inscrição.</p>
+        </form>
+
+        <div class="form-ok" id="fOk" role="alert">
+          <div class="ok-sq">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 class="ok-title">Vaga <em>reservada!</em></h3>
+          <p class="ok-text">Sua inscrição foi confirmada. Em breve você receberá todos os detalhes pelo e-mail e WhatsApp. Nos vemos em 26 de junho!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <img src="assets/img/ql-brasao-1980-black.png" alt="Quartier Latin 1980" class="footer-logo">
+        <p>Um encontro com a arte da dança. Acreditamos na arte como ferramenta de transformação — para crianças, jovens e adultos de todas as idades.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/quartierlatin1980/" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/Ballet-Quartier-Latin-183150041818377" target="_blank" rel="noopener" class="fsoc" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UC5feJYd6zQdwmQ-yn6bixjA" target="_blank" rel="noopener" class="fsoc" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--charcoal)"/></svg>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=5511973747700&text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20workshop!" target="_blank" rel="noopener" class="fsoc" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="fcol-title">Site institucional</p>
+        <ul class="flinks">
+          <li><a href="https://www.quartierlatin.com.br/" target="_blank" rel="noopener">Início</a></li>
+          <li><a href="https://www.quartierlatin.com.br/" target="_blank" rel="noopener">Modalidades</a></li>
+          <li><a href="https://www.quartierlatin.com.br/" target="_blank" rel="noopener">Sobre a escola</a></li>
+          <li><a href="https://www.quartierlatin.com.br/" target="_blank" rel="noopener">Contato</a></li>
+          <li><a href="https://api.whatsapp.com/send?phone=5511973747700" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="fcol-title">Informações do evento</p>
+        <div class="faddr">
+          <p><strong style="color:rgba(255,255,255,0.55);font-weight:600;">26 de junho · 10h</strong></p>
+          <p>Local a confirmar<br>São Paulo / SP</p>
+          <p style="margin-top:14px"><a href="mailto:contato@quartierlatin.com.br">contato@quartierlatin.com.br</a></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Quartier Latin — Escola de Dança. Todos os direitos reservados.</p>
+      <p><a href="https://www.quartierlatin.com.br/" target="_blank" rel="noopener">quartierlatin.com.br</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  /* ─── NAVBAR ─── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 48), { passive: true });
+
+  /* ─── INTERSECTION OBSERVER ─── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+  /* ─── WHATSAPP MASK ─── */
+  const tel = document.getElementById('ftel');
+  tel.addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g,'').slice(0,11);
+    if (v.length > 2)  v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    if (v.length > 10) v = v.slice(0,10) + '-' + v.slice(10);
+    e.target.value = v;
+  });
+
+  /* ─── FORM VALIDATION ─── */
+  const form = document.getElementById('wForm');
+  const fOk  = document.getElementById('fOk');
+
+  const setErr = (id, eid, show) => {
+    document.getElementById(id).classList.toggle('err', show);
+    document.getElementById(eid).classList.toggle('on', show);
+  };
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nome   = document.getElementById('fnome').value.trim();
+    const email  = document.getElementById('femail').value.trim();
+    const telv   = document.getElementById('ftel').value.trim();
+    const origem = document.getElementById('forigem').value;
+    let ok = true;
+
+    if (nome.length < 3)                          { setErr('fnome',   'err-nome',   true); ok=false; } else setErr('fnome',   'err-nome',   false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setErr('femail',  'err-email',  true); ok=false; } else setErr('femail',  'err-email',  false);
+    if (telv.replace(/\D/g,'').length < 10)        { setErr('ftel',    'err-tel',    true); ok=false; } else setErr('ftel',    'err-tel',    false);
+    if (!origem)                                   { setErr('forigem', 'err-origem', true); ok=false; } else setErr('forigem', 'err-origem', false);
+
+    if (!ok) return;
+
+    const btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'Enviando…';
+
+    /* Substitua pelo endpoint real — webhook, Mailchimp, etc. */
+    setTimeout(() => {
+      form.style.display = 'none';
+      fOk.classList.add('on');
+      fOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 900);
+  });
+
+  [['fnome','err-nome'],['femail','err-email'],['ftel','err-tel'],['forigem','err-origem']].forEach(([id,eid]) =>
+    document.getElementById(id).addEventListener('input', () => setErr(id, eid, false))
+  );
+</script>
+
+</body>
+</html>
