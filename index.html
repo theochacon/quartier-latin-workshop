@@ -931,20 +931,31 @@
        RESPONSIVE
     ═══════════════════════════════════════════════ */
     @media (max-width: 768px) {
-      .hero-vline { display: none; }
-      .hero-copy { max-width: 100%; }
-      .hero-content { padding-top: 100px; padding-bottom: 64px; }
-      .hero-h1 { font-size: clamp(36px, 10vw, 48px); }
-      .hero-sub { font-size: 15px; margin-bottom: 32px; }
+      /* Hero — foto em bloco próprio, conteúdo em charcoal sólido abaixo */
+      .hero { flex-direction: column; align-items: stretch; min-height: auto; }
+      .hero-photo { position: relative; inset: auto; height: 55vh; flex-shrink: 0; }
       .hero-photo::after {
         background: linear-gradient(
           180deg,
-          rgba(36,36,36,0.88) 0%,
-          rgba(36,36,36,0.78) 100%
+          rgba(36,36,36,0.4) 0%,
+          rgba(36,36,36,0.08) 50%,
+          rgba(36,36,36,0.5) 100%
         );
       }
+      .hero-vline { display: none; }
+      .hero-content { background: var(--charcoal); padding-top: 48px; padding-bottom: 56px; }
+      .hero-copy { max-width: 100%; }
+      .hero-h1 { font-size: clamp(36px, 10vw, 48px); }
+      .hero-h1 em { color: #D94040; }
+      .hero-sub { font-size: 15px; margin-bottom: 32px; }
+      .hero-info { flex-direction: column; gap: 20px; }
+      .hero-info-item strong { font-size: 32px; }
+      .hero-info-item span { font-size: 12px; }
+      .hero-scroll { display: none; }
+      /* Nav */
       .nav-logo img { height: 34px; }
       .btn-nav { padding: 10px 16px; font-size: 10px; letter-spacing: .12em; }
+      /* Demais seções */
       .meta-grid, .pq-grid, .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
       .meta-deco-1, .meta-deco-2 { display: none; }
       .pq-vis { order: -1; }
@@ -953,8 +964,6 @@
       .pilares-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .hero-info { flex-direction: column; gap: 20px; }
-      .hero-scroll { display: none; }
     }
     @media (min-width: 769px) and (max-width: 1023px) {
       .dep-grid { grid-template-columns: 1fr 1fr; }
