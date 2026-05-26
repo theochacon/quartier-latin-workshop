@@ -644,13 +644,14 @@
       font-size: 14px; font-weight: 300;
       line-height: 1.9;
       color: rgba(255,255,255,0.58);
+      display: flex; flex-direction: column; gap: 16px;
     }
-    .marisa-placeholder {
-      background: rgba(255,255,255,0.05);
-      border-left: 3px solid rgba(92,28,24,0.6);
-      padding: 14px 18px;
-      font-size: 12px; font-style: italic;
-      color: rgba(255,255,255,0.3);
+    .marisa-destaque {
+      font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      border-left: 3px solid var(--bordeaux);
+      padding-left: 14px;
+      font-style: italic;
     }
 
     @media (max-width: 768px) {
@@ -1219,10 +1220,10 @@
       Workshop Ministrado pela Coreógrafa<br>Multipremiada no Festival de Joinville
     </p>
     <div class="marisa-rule r d2"></div>
-    <div class="r d3">
-      <div class="marisa-placeholder">
-        [TEXTO SOBRE MARISA BALLARINI — trajetória, prêmios, visão artística e relação com a metodologia Linguagem Coreográfica]
-      </div>
+    <div class="marisa-bio r d3">
+      <p>Diretora e coreógrafa do Ballet Quartier Latin desde 1980, Marisa Ballarini tem vasta experiência didática e pedagógica. Como coreógrafa, tem estilo próprio e inconfundível — sua excelência criativa é reconhecida e premiada nos mais importantes eventos da Dança Nacional.</p>
+      <p>Atualmente mantém um importante trabalho de desenvolvimento e composição artística para corpos 40 e 50+. O sucesso dessas Criações Coreográficas trouxe consecutivos Prêmios Especiais, muitos deles no Festival de Dança de Joinville — feito que lhe rendeu o convite para atuar na Programação Didática do festival.</p>
+      <p class="marisa-destaque">Marisa Ballarini vai ministrar o primeiro workshop da categoria no Festival de Joinville — julho de 2026.</p>
     </div>
   </div>
 
