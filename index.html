@@ -535,6 +535,17 @@
       color: var(--black); margin-bottom: 3px;
     }
     .pq-text span { font-size: 13px; font-weight: 300; color: #666; line-height: 1.65; }
+    .pq-tags {
+      list-style: none; display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px;
+    }
+    .pq-tags li {
+      font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: lowercase; color: var(--bordeaux);
+      border: 1px solid var(--bordeaux);
+      padding: 5px 12px;
+    }
+    .pq-tags li::before { content: "* "; }
 
     .pq-vis { position: relative; }
     .pq-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
@@ -1140,42 +1151,42 @@
       <div class="pq-content">
         <span class="eye r">Para quem é este workshop</span>
         <h2 class="title r d1" style="font-size:clamp(36px,4vw,56px)">
-          Para quem sente<br>que o corpo<br>pede mais
+          Para quem sente<br>que o corpo<br>pede e pode mais
         </h2>
         <div class="rule r d2"></div>
-        <p class="pq-intro r d2">
-          Este workshop é para adultos que nunca dançaram — e para quem dançou e quer
-          voltar. Para quem vive acelerado e quer desacelerar com propósito.
-        </p>
         <ul class="pq-list">
           <li class="pq-item r d1">
             <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="pq-text">
-              <strong>Iniciantes absolutos</strong>
-              <span>Nenhuma experiência com dança é necessária — apenas a curiosidade de estar presente.</span>
+              <strong>Quem quer se reconectar com o corpo e com a dança</strong>
+              <span>Profissionais que passam horas sentados e sentiram o corpo esquecido no cotidiano.</span>
             </div>
           </li>
           <li class="pq-item r d2">
             <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="pq-text">
-              <strong>Quem quer se reconectar com o corpo</strong>
-              <span>Profissionais que passam horas sentados e sentiram o corpo esquecido no cotidiano.</span>
+              <strong>Curiosos pelo aprofundamento em dança como expressão artística</strong>
             </div>
           </li>
           <li class="pq-item r d3">
             <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="pq-text">
-              <strong>Curiosos pela dança como arte</strong>
-              <span>Quem sempre quis entrar num estúdio, mas nunca soube por onde começar.</span>
+              <strong>Quem já esteve na sala de aula, mas não avançou na atividade</strong>
             </div>
           </li>
           <li class="pq-item r d4">
             <div class="pq-sq"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="pq-text">
-              <strong>Alunos e ex-alunos do Quartier Latin</strong>
+              <strong>Alunos e ex-alunos de escolas de dança</strong>
               <span>Uma oportunidade de aprofundar a experiência além das aulas regulares.</span>
             </div>
           </li>
+        </ul>
+        <ul class="pq-tags r d4">
+          <li>para adultos com alguma experiência em dança</li>
+          <li>para quem já dançou e quer voltar a dançar</li>
+          <li>para quem se mantém na dança</li>
+          <li>para quem vive acelerado ou desacelerou, mas busca propósito</li>
         </ul>
       </div>
 
