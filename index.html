@@ -662,48 +662,58 @@
     }
 
     /* ═══════════════════════════════════════════════
-       DEPOIMENTOS
+       DEPOIMENTOS — CAROUSEL
     ═══════════════════════════════════════════════ */
-    .s-dep { padding: var(--pad) 0; background: var(--white); }
+    .s-dep { padding: var(--pad) 0 0; background: var(--white); overflow: hidden; }
     .dep-head { text-align: center; margin-bottom: clamp(48px,6vw,80px); }
     .dep-head .eye { margin-bottom: 16px; }
     .dep-head .title { font-size: clamp(36px,4vw,58px); }
 
-    .dep-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
-
+    .dep-carousel {
+      display: flex; align-items: center;
+      padding-bottom: var(--pad);
+      overflow: hidden;
+    }
+    .dep-track-outer { flex: 1; overflow: visible; }
+    .dep-track {
+      display: flex; gap: 20px;
+      transition: transform .6s cubic-bezier(.16,1,.3,1);
+      will-change: transform;
+    }
     .dep-card {
+      flex: 0 0 min(420px, 84vw);
       background: var(--off-white);
-      padding: clamp(28px,3.5vw,44px);
+      padding: clamp(36px,4vw,52px);
+      padding-top: clamp(90px,10vw,120px);
       position: relative;
-      transition: transform .3s, box-shadow .3s;
       border-top: 4px solid transparent;
+      opacity: 0.45;
+      transform: scale(0.92);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1),
+                  transform .5s cubic-bezier(.16,1,.3,1),
+                  box-shadow .5s, border-top-color .5s, background .5s;
     }
-    .dep-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    .dep-card.dep-active {
+      opacity: 1; transform: scale(1);
+      background: var(--white);
       border-top-color: var(--bordeaux);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.10);
     }
-
     .dep-q {
       font-family: var(--ff-saonara);
-      font-size: 96px; line-height: .7;
-      color: var(--bordeaux); opacity: .18;
-      position: absolute; top: 16px; left: 22px;
-      user-select: none;
+      font-size: clamp(110px,13vw,170px);
+      line-height: 0.72;
+      color: var(--bordeaux); opacity: 0.12;
+      position: absolute; top: 8px; left: 16px;
+      user-select: none; pointer-events: none;
+      transition: opacity .5s;
     }
-    .dep-stars { display: flex; gap: 3px; margin-bottom: 20px; }
-    .dep-stars svg { width: 12px; height: 12px; fill: var(--bordeaux); }
+    .dep-card.dep-active .dep-q { opacity: 0.20; }
     .dep-text {
-      font-family: var(--ff-canvas);
-      font-size: clamp(16px,1.6vw,20px);
-      font-weight: 300; line-height: 1.68;
-      color: var(--charcoal); margin-bottom: 14px;
-    }
-    .dep-note {
-      font-size: 9.5px; font-weight: 600;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: var(--bordeaux); opacity: .6;
-      margin-bottom: 18px;
+      font-family: var(--ff-body);
+      font-size: clamp(14px,1.35vw,17px);
+      font-weight: 300; line-height: 1.80;
+      color: var(--charcoal); margin-bottom: 24px;
     }
     .dep-author {
       display: flex; align-items: center; gap: 12px;
@@ -717,7 +727,20 @@
     }
     .dep-avatar svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.7); }
     .dep-info strong { display: block; font-size: 13px; font-weight: 700; color: var(--black); }
-    .dep-info span { font-size: 11.5px; font-weight: 300; color: #777; }
+    .dep-nav {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,0.12);
+      display: grid; place-items: center;
+      cursor: pointer; z-index: 2;
+      margin: 0 clamp(4px,1.5vw,20px);
+      transition: background .2s, border-color .2s;
+    }
+    .dep-nav:hover { background: var(--bordeaux); border-color: var(--bordeaux); }
+    .dep-nav:hover svg { stroke: var(--white); }
+    .dep-nav svg { width: 20px; height: 20px; stroke: var(--charcoal); fill: none; stroke-width: 2; transition: stroke .2s; }
+    .dep-nav:disabled { opacity: 0.25; pointer-events: none; }
 
     /* ═══════════════════════════════════════════════
        SOBRE
@@ -971,14 +994,10 @@
       .meta-deco-1, .meta-deco-2 { display: none; }
       .pq-vis { order: -1; }
       .pq-badge { position: static; display: inline-block; margin-top: 16px; }
-      .dep-grid { grid-template-columns: 1fr; gap: 2px; }
+      .dep-nav { width: 36px; height: 36px; margin: 0 2px; }
       .pilares-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-    @media (min-width: 769px) and (max-width: 1023px) {
-      .dep-grid { grid-template-columns: 1fr 1fr; }
-      .dep-grid .dep-card:last-child { grid-column: 1/-1; max-width: 50%; margin: 0 auto; width: 100%; }
     }
     @media (max-width: 420px) {
       .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -1228,68 +1247,121 @@
       </h2>
       <div class="rule rule--center r d2"></div>
     </div>
+  </div>
 
-    <div class="dep-grid">
-      <div class="dep-card r">
-        <div class="dep-q" aria-hidden="true">"</div>
-        <div class="dep-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="dep-text">"Cheguei convicta de que dança não era para mim. Saí questionando por que demorei tanto para dar esse passo. A professora cria um espaço onde o corpo simplesmente quer se mover — sem pudor, sem ansiedade de acertar."</p>
-        <p class="dep-note">[Substituir pelo depoimento real]</p>
-        <div class="dep-author">
-          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div class="dep-info">
-            <strong>Ana Paula R.</strong>
-            <span>Advogada, 41 anos — sem experiência prévia</span>
+  <div class="dep-carousel">
+    <button class="dep-nav" id="depPrev" aria-label="Depoimento anterior">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="dep-track-outer" id="depOuter">
+      <div class="dep-track" id="depTrack">
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Começar o Ballet após os 40 anos foi a melhor decisão que já tomei. Cada aula é um momento de presença absoluta, onde esqueço a rotina, os compromissos e me conecto com a música.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Viviane Lobato</strong></div>
           </div>
         </div>
-      </div>
 
-      <div class="dep-card r d1">
-        <div class="dep-q" aria-hidden="true">"</div>
-        <div class="dep-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="dep-text">"Há anos eu sabia que queria dançar, mas a vida foi empurrando isso para depois. O workshop me mostrou que não precisa de talento — precisa de disponibilidade. Duas horas depois eu já estava inscrito nas aulas."</p>
-        <p class="dep-note">[Substituir pelo depoimento real]</p>
-        <div class="dep-author">
-          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div class="dep-info">
-            <strong>Marcelo T.</strong>
-            <span>Arquiteto, 38 anos — primeira experiência</span>
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Após 25 anos de ballet de relativo alto desempenho, e 7 de sedentarismo total, não imaginei que conseguiria voltar a dançar, agora com 43 anos. Meu corpo já bem diferente, tantas inseguranças. Mas consegui! E cada passo das aulas, cada ensaio, é uma plenitude!</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Carolina Gamba</strong></div>
           </div>
         </div>
-      </div>
 
-      <div class="dep-card r d2">
-        <div class="dep-q" aria-hidden="true">"</div>
-        <div class="dep-stars" aria-label="5 estrelas">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="dep-text">"Dancei dos 8 aos 15 anos e parei. Achei que o Quartier Latin seria técnico demais para uma retomada. Pelo contrário — a Linguagem Coreográfica me devolveu a leveza que eu esquecera que existia dentro de mim."</p>
-        <p class="dep-note">[Substituir pelo depoimento real]</p>
-        <div class="dep-author">
-          <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div class="dep-info">
-            <strong>Fernanda K.</strong>
-            <span>Médica, 45 anos — ex-aluna retornando</span>
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Voltar a dançar depois de 25 anos foi reencontrar uma parte de mim que estava adormecida. Após os 40, a dança ganhou um significado ainda mais profundo: conexão comigo mesma, com meu corpo e com a arte que sempre esteve dentro de mim.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Gisele Gomes</strong></div>
           </div>
         </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">A dança é cura pra mim, sempre foi. Voltar a dançar depois dos 50 anos me trouxe a volta desse remédio tão importante pro corpo e pra alma.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Lu Ervalho</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Voltar a dançar depois de tantos anos é uma experiência fantástica. Mais do que atividade física é um momento de conexão com a Dani de muitos anos atrás, mas que está presente nesse corpo 40+.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Daniela Veronese</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">A dança me reconectou comigo mesmo. Quando retornei, pensei apenas em fazer uma atividade física no qual eu gostasse. Mas fui surpreendida… o que encontrei foi muito além… foi um resgate!</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Cris Fortunatti</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Seguir Dançando aos 55 anos é pra mim a certeza da escolha que fiz na vida. A DANÇA nos escolhe, quando nos tornamos disponíveis e o corpo passa a ser um meio de escrita poética. Assim foi e tem sido minha carreira e vida.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Lívio Lima</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Retomei a dança através das minhas filhas… e, sem perceber, reencontrei também partes lindas de mim que estavam adormecidas pelos caminhos da vida.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Angélica Pina</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Dançar após os 40 anos é um ato de coragem, mas acima de tudo é um reencontro. Subir no palco hoje e ver a arte se manifestar através do meu corpo não é apenas sobre técnica; é sobre resgatar a minha essência mais sensível.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Natália Borelli</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Aos 40-50 anos a gente descobre que o corpo guarda segredos que a pressa dos 20 não deixa ouvir. Dançar nessa idade para mim é como abrir um vinho guardado. Você não bebe para ficar tonta, você bebe para sentir cada nota, cada camada que o tempo desenhou.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>Silmara Friolani</strong></div>
+          </div>
+        </div>
+
+        <div class="dep-card" data-dep>
+          <div class="dep-q" aria-hidden="true">"</div>
+          <p class="dep-text">Voltar a dançar na maturidade foi algo incrível, pois me conectou novamente com meu corpo e principalmente com a memória afetiva do ballet.</p>
+          <div class="dep-author">
+            <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="dep-info"><strong>André Dias</strong></div>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <button class="dep-nav" id="depNext" aria-label="Próximo depoimento">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   </div>
 </section>
 
@@ -1516,6 +1588,38 @@
   [['fnome','err-nome'],['femail','err-email'],['ftel','err-tel'],['forigem','err-origem']].forEach(([id,eid]) =>
     document.getElementById(id).addEventListener('input', () => setErr(id, eid, false))
   );
+
+  /* ─── DEPOIMENTOS CAROUSEL ─── */
+  (function () {
+    const outer = document.getElementById('depOuter');
+    const track = document.getElementById('depTrack');
+    const cards = Array.from(track.querySelectorAll('[data-dep]'));
+    const btnP  = document.getElementById('depPrev');
+    const btnN  = document.getElementById('depNext');
+    const GAP   = 20;
+    let cur     = 0;
+
+    function activate(i) {
+      cards.forEach((c, j) => c.classList.toggle('dep-active', j === i));
+      btnP.disabled = i === 0;
+      btnN.disabled = i === cards.length - 1;
+      cur = i;
+    }
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(i, cards.length - 1));
+      const cardW  = cards[0].offsetWidth;
+      const outerW = outer.offsetWidth;
+      const tx     = outerW / 2 - cardW / 2 - i * (cardW + GAP);
+      track.style.transform = `translateX(${tx}px)`;
+      activate(i);
+    }
+
+    btnP.addEventListener('click', () => goTo(cur - 1));
+    btnN.addEventListener('click', () => goTo(cur + 1));
+    window.addEventListener('resize', () => goTo(cur), { passive: true });
+    goTo(0);
+  })();
 </script>
 
 </body>
