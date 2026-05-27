@@ -724,7 +724,6 @@
     ═══════════════════════════════════════════════ */
     .s-sobre {
       position: relative; overflow: hidden;
-      min-height: clamp(500px, 70vw, 780px);
       display: flex; align-items: flex-start;
     }
     .sobre-bg {
@@ -739,25 +738,33 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.72) 0%,
-        rgba(0,0,0,0.45) 45%,
+        rgba(0,0,0,0.80) 0%,
+        rgba(0,0,0,0.60) 50%,
         rgba(0,0,0,0.0) 100%
       );
       z-index: 1;
     }
     .sobre-content {
       position: relative; z-index: 2;
-      max-width: 680px;
-      padding: clamp(48px, 8vw, 96px) 0 clamp(48px, 8vw, 96px);
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+      padding: clamp(56px, 9vw, 112px) 0 clamp(120px, 22vw, 280px);
     }
-    .sobre-content .eye--light { margin-bottom: 16px; }
-    .sobre-content .title { font-size: clamp(36px,4vw,54px); }
-    .sobre-content .rule--light { margin: 20px 0; }
+    .sobre-col-left .eye--light { margin-bottom: 20px; }
+    .sobre-col-left .title {
+      font-size: clamp(48px, 5.5vw, 82px) !important;
+      line-height: 1.0;
+    }
+    .sobre-col-left .rule--light { margin: 24px 0 0; }
     .sobre-body {
       font-size: 15px; font-weight: 300;
       line-height: 1.88; color: rgba(255,255,255,0.82);
       margin-top: 18px;
     }
+    .sobre-body:first-child { margin-top: 0; }
 
     /* ═══════════════════════════════════════════════
        FORMULÁRIO
@@ -947,6 +954,7 @@
       .btn-nav { padding: 10px 16px; font-size: 10px; letter-spacing: .12em; }
       /* Demais seções */
       .meta-grid, .pq-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-content { grid-template-columns: 1fr; padding-bottom: clamp(60px, 12vw, 120px); }
       .meta-deco-1, .meta-deco-2 { display: none; }
       .pq-vis { order: -1; }
       .pq-badge { position: static; display: inline-block; margin-top: 16px; }
@@ -1286,20 +1294,24 @@
   </div>
   <div class="wrap">
     <div class="sobre-content">
-      <span class="eye eye--light r">A escola</span>
-      <h2 class="title title--white r d1" style="font-size:clamp(36px,4vw,54px)">
-        Quartier Latin<br>desde 1980
-      </h2>
-      <div class="rule rule--light r d2"></div>
-      <p class="sobre-body r d2">
-        Há mais de quatro décadas, o Quartier Latin forma bailarinos e transforma vidas através da arte da dança.
-      </p>
-      <p class="sobre-body r d3">
-        Fundado com a convicção de que a Arte é atividade transformadora e essencial — não um privilégio — a escola atua com metodologia própria e fundamentos únicos. Equilibra excelência técnica com profunda sensibilidade artística e compreensão humana.
-      </p>
-      <p class="sobre-body r d4">
-        O Quartier Latin acredita que além de preparo e formação, o bom educador deve ser rico em atributos humanos. Só assim poderá contribuir para a formação de crianças, jovens e adultos.
-      </p>
+      <div class="sobre-col-left">
+        <span class="eye eye--light r">A escola</span>
+        <h2 class="title title--white r d1">
+          Quartier Latin<br>desde 1980
+        </h2>
+        <div class="rule rule--light r d2"></div>
+      </div>
+      <div class="sobre-col-right">
+        <p class="sobre-body r d2">
+          Há mais de quatro décadas, o Quartier Latin forma bailarinos e transforma vidas através da arte da dança.
+        </p>
+        <p class="sobre-body r d3">
+          Fundado com a convicção de que a Arte é atividade transformadora e essencial — não um privilégio — a escola atua com metodologia própria e fundamentos únicos. Equilibra excelência técnica com profunda sensibilidade artística e compreensão humana.
+        </p>
+        <p class="sobre-body r d4">
+          O Quartier Latin acredita que além de preparo e formação, o bom educador deve ser rico em atributos humanos. Só assim poderá contribuir para a formação de crianças, jovens e adultos.
+        </p>
+      </div>
     </div>
   </div>
 </section>
