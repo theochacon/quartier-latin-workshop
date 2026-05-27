@@ -433,13 +433,7 @@
     .pilares-geo {
       position: absolute; inset: 0; pointer-events: none;
     }
-    .pg-rect {
-      position: absolute;
-      top: 0; right: 0;
-      width: 22%; height: 100%;
-      background: var(--bordeaux);
-      opacity: 0.12;
-    }
+    .pg-rect { display: none; }
     .pg-line {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -458,36 +452,29 @@
     @media (min-width: 1024px) { .pilares-grid { grid-template-columns: repeat(4,1fr); } }
 
     .pilar {
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-left: 3px solid rgba(92,28,24,0.55);
+      background: var(--bordeaux);
+      border: 1px solid rgba(0,0,0,0.18);
       padding: clamp(20px,3vw,36px);
       padding-top: clamp(140px, 15vw, 210px);
       position: relative; overflow: hidden;
-      transition: background .3s, border-left-color .3s, box-shadow .3s;
+      transition: background .3s, box-shadow .3s;
     }
-    /* Barra bordeaux superior — sempre visível */
-    .pilar::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: var(--bordeaux);
-    }
+    .pilar::before { display: none; }
     .pilar:hover {
-      background: rgba(255,255,255,0.065);
-      border-left-color: var(--bordeaux);
-      box-shadow: inset 0 0 40px rgba(92,28,24,0.08);
+      background: var(--bordeaux-v);
+      box-shadow: inset 0 0 60px rgba(0,0,0,0.25);
     }
 
-    /* Número — tipografia outline (decorativa/editorial) */
+    /* Número — mesmo tom do fundo, stroke sutil = efeito vazado */
     .pilar-n {
       position: absolute;
-      top: 0; left: 0;
+      top: -0.05em; left: -0.04em;
       font-family: var(--ff-saonara);
       font-size: clamp(130px, 14vw, 200px);
       font-weight: 400;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.13);
-      text-stroke: 1px rgba(255,255,255,0.13);
+      color: var(--bordeaux);
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.18);
+      text-stroke: 1.5px rgba(255,255,255,0.18);
       line-height: 0.88;
       user-select: none;
       padding: 0; margin: 0;
