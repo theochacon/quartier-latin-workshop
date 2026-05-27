@@ -954,7 +954,20 @@
       .btn-nav { padding: 10px 16px; font-size: 10px; letter-spacing: .12em; }
       /* Demais seções */
       .meta-grid, .pq-grid { grid-template-columns: 1fr; gap: 40px; }
-      .sobre-content { grid-template-columns: 1fr; padding-bottom: clamp(60px, 12vw, 120px); }
+      /* A Escola — mobile: foto visível, texto abaixo */
+      .s-sobre { display: block; min-height: 0; overflow: visible; }
+      .sobre-bg { position: relative; height: clamp(300px, 80vw, 460px); }
+      .sobre-content { grid-template-columns: 1fr; padding: 0; }
+      .sobre-col-left {
+        position: absolute; top: 0; left: 0; right: 0;
+        padding: clamp(32px, 8vw, 48px) clamp(20px, 5vw, 60px);
+        z-index: 2;
+      }
+      .sobre-col-right {
+        background: var(--bordeaux);
+        padding: 36px clamp(20px, 5vw, 60px) 52px;
+        margin: 0;
+      }
       .meta-deco-1, .meta-deco-2 { display: none; }
       .pq-vis { order: -1; }
       .pq-badge { position: static; display: inline-block; margin-top: 16px; }
