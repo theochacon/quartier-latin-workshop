@@ -9,6 +9,24 @@
   <meta property="og:description" content="Uma noite para redescobrir seu corpo através da dança. 26 de junho, 19h30. Vagas limitadas e gratuitas.">
   <meta property="og:type" content="website">
 
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2366415300515524');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2366415300515524&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     /* ═══════════════════════════════════════════════
        FONTES LOCAIS
@@ -1583,12 +1601,22 @@
     btn.disabled = true;
     btn.querySelector('span').textContent = 'Enviando…';
 
-    /* Substitua pelo endpoint real — webhook, Mailchimp, etc. */
-    setTimeout(() => {
+    fetch('https://script.google.com/macros/s/AKfycby6z-5pSAgokuf2aJ2BnlUdqn9XnyiT8HNACeq23b9L4wMSDvQe4PUfGgk-ytXb1T0A/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify({ nome, email, tel: telv, idade, nivel, origem }),
+      headers: { 'Content-Type': 'text/plain' }
+    })
+    .then(() => {
       form.style.display = 'none';
       fOk.classList.add('on');
       fOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 900);
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Confirmar inscrição';
+      alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
+    });
   });
 
   [['fnome','err-nome'],['femail','err-email'],['ftel','err-tel'],['fidade','err-idade'],['fnivel','err-nivel'],['forigem','err-origem']].forEach(([id,eid]) =>
