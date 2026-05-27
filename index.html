@@ -1408,7 +1408,7 @@
       <div class="form-head">
         <span class="eye r">Inscrição gratuita</span>
         <h2 class="title r d1" style="font-size:clamp(36px,4.5vw,62px)">
-          Reserve sua<br>vaga agora
+          Aplique para<br>uma vaga agora
         </h2>
         <div class="rule rule--center r d2"></div>
         <div class="form-pill r d2">26 de junho · 19h30 às 22h · Gratuito</div>
@@ -1437,6 +1437,26 @@
             <label class="flabel" for="ftel">WhatsApp <span class="req">*</span></label>
             <input type="tel" id="ftel" name="whatsapp" class="finput" placeholder="(11) 9 0000-0000" autocomplete="tel" maxlength="16">
             <p class="ferr" id="err-tel">Por favor, informe um número de WhatsApp válido.</p>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="fidade">Idade <span class="req">*</span></label>
+            <input type="number" id="fidade" name="idade" class="finput" placeholder="Sua idade" min="18" max="99">
+            <p class="ferr" id="err-idade">Por favor, informe sua idade.</p>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="fnivel">Nível de experiência em dança <span class="req">*</span></label>
+            <div class="fsel-wrap">
+              <select id="fnivel" name="nivel" class="fselect finput">
+                <option value="">Selecione uma opção</option>
+                <option value="avancado">Avançado</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="basico">Básico</option>
+                <option value="nenhuma">Nenhuma experiência</option>
+              </select>
+            </div>
+            <p class="ferr" id="err-nivel">Por favor, selecione seu nível de experiência.</p>
           </div>
 
           <div class="fgroup">
@@ -1563,12 +1583,16 @@
     const nome   = document.getElementById('fnome').value.trim();
     const email  = document.getElementById('femail').value.trim();
     const telv   = document.getElementById('ftel').value.trim();
+    const idade  = document.getElementById('fidade').value.trim();
+    const nivel  = document.getElementById('fnivel').value;
     const origem = document.getElementById('forigem').value;
     let ok = true;
 
     if (nome.length < 3)                          { setErr('fnome',   'err-nome',   true); ok=false; } else setErr('fnome',   'err-nome',   false);
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setErr('femail',  'err-email',  true); ok=false; } else setErr('femail',  'err-email',  false);
     if (telv.replace(/\D/g,'').length < 10)        { setErr('ftel',    'err-tel',    true); ok=false; } else setErr('ftel',    'err-tel',    false);
+    if (!idade || +idade < 18 || +idade > 99)      { setErr('fidade',  'err-idade',  true); ok=false; } else setErr('fidade',  'err-idade',  false);
+    if (!nivel)                                    { setErr('fnivel',  'err-nivel',  true); ok=false; } else setErr('fnivel',  'err-nivel',  false);
     if (!origem)                                   { setErr('forigem', 'err-origem', true); ok=false; } else setErr('forigem', 'err-origem', false);
 
     if (!ok) return;
@@ -1585,7 +1609,7 @@
     }, 900);
   });
 
-  [['fnome','err-nome'],['femail','err-email'],['ftel','err-tel'],['forigem','err-origem']].forEach(([id,eid]) =>
+  [['fnome','err-nome'],['femail','err-email'],['ftel','err-tel'],['fidade','err-idade'],['fnivel','err-nivel'],['forigem','err-origem']].forEach(([id,eid]) =>
     document.getElementById(id).addEventListener('input', () => setErr(id, eid, false))
   );
 
