@@ -1601,11 +1601,10 @@
     btn.disabled = true;
     btn.querySelector('span').textContent = 'Enviando…';
 
-    fetch('https://script.google.com/macros/s/AKfycbx-9jyUYJZHBiVa2Z6nN0zJFUarHjQ4mLJ0CXc6DzDVru06rWJSAAojFlv76fjNY5ha/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify({ nome, email, tel: telv, idade, nivel, origem }),
-      headers: { 'Content-Type': 'text/plain' }
+    const params = new URLSearchParams({ nome, email, tel: telv, idade, nivel, origem });
+    fetch('https://script.google.com/macros/s/AKfycbxKBcs9hKttfhE9Wy5JR9viiq-k0vnPkFyoQlulN2xgMI0MVF4Jq6MeJA54IwXkTesK/exec?' + params, {
+      method: 'GET',
+      mode: 'no-cors'
     })
     .then(() => {
       form.style.display = 'none';
