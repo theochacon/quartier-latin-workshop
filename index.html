@@ -829,10 +829,52 @@
        FORMULÁRIO
     ═══════════════════════════════════════════════ */
     .s-form { padding: var(--pad) 0; background: var(--off-white); }
-    .form-wrap { max-width: 600px; margin: 0 auto; }
-    .form-head { text-align: center; margin-bottom: clamp(40px,5vw,68px); }
-    .form-head .eye { margin-bottom: 16px; }
-    .form-head .title { font-size: clamp(36px,4.5vw,62px); }
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 7vw, 96px);
+      align-items: start;
+    }
+    .form-info .eye { margin-bottom: 16px; }
+    .form-info .title { font-size: clamp(36px,4.5vw,62px); }
+    .form-info .rule { margin: 24px 0; }
+    .form-info .form-pill { margin-bottom: 32px; }
+
+    .form-includes {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 32px;
+    }
+    .form-include-item {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 14px; font-weight: 300; color: var(--charcoal);
+    }
+    .form-include-dot {
+      width: 10px; height: 10px;
+      background: var(--bordeaux); flex-shrink: 0;
+    }
+    .form-price {
+      border-top: 1px solid rgba(0,0,0,0.12);
+      padding-top: 24px; margin-bottom: 28px;
+    }
+    .form-price-label {
+      display: block;
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: #999; margin-bottom: 8px;
+    }
+    .form-price-val {
+      display: flex; align-items: baseline; gap: 8px;
+    }
+    .form-price-cur {
+      font-size: 18px; font-weight: 300; color: var(--charcoal);
+    }
+    .form-price-val strong {
+      font-family: var(--ff-body);
+      font-size: clamp(56px, 6vw, 80px);
+      font-weight: 700; line-height: 1;
+      color: var(--charcoal);
+    }
 
     /* Evento pill */
     .form-pill {
@@ -1034,6 +1076,7 @@
       .pilares-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .form-layout { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 420px) {
       .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -1432,21 +1475,43 @@
 <!-- ══════════════════════ FORMULÁRIO ══════════════════════ -->
 <section class="s-form" id="inscricao">
   <div class="wrap">
-    <div class="form-wrap">
+    <div class="form-layout">
 
-      <div class="form-head">
+      <!-- Coluna esquerda: info + preço -->
+      <div class="form-info r">
         <span class="eye r">Inscrição</span>
         <h2 class="title r d1" style="font-size:clamp(36px,4.5vw,62px)">
           Aplique para<br>uma vaga agora
         </h2>
-        <div class="rule rule--center r d2"></div>
+        <div class="rule r d2"></div>
         <div class="form-pill r d2">26 de junho · 19h30 às 22h</div>
+
+        <ul class="form-includes r d2">
+          <li class="form-include-item">
+            <div class="form-include-dot"></div>
+            <span>2h30 de Workshop</span>
+          </li>
+          <li class="form-include-item">
+            <div class="form-include-dot"></div>
+            <span>Camiseta exclusiva do evento</span>
+          </li>
+        </ul>
+
+        <div class="form-price r d3">
+          <span class="form-price-label">Investimento</span>
+          <div class="form-price-val">
+            <span class="form-price-cur">R$</span>
+            <strong>90</strong>
+          </div>
+        </div>
+
         <p class="form-sub r d3">
           Vagas limitadas. Após a inscrição, enviaremos a confirmação e o endereço
           exato pelo e-mail e WhatsApp informados.
         </p>
       </div>
 
+      <!-- Coluna direita: formulário -->
       <div class="form-card r">
         <form id="wForm" novalidate>
 
