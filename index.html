@@ -1630,6 +1630,8 @@
     btn.disabled = true;
     btn.querySelector('span').textContent = 'Enviando…';
 
+    window.open('https://www.sympla.com.br/evento/workshop-danca-para-corpos-40/3445557', '_blank');
+
     const params = new URLSearchParams({ nome, email, tel: telv, idade, nivel, origem });
     fetch('https://script.google.com/macros/s/AKfycbxKBcs9hKttfhE9Wy5JR9viiq-k0vnPkFyoQlulN2xgMI0MVF4Jq6MeJA54IwXkTesK/exec?' + params, {
       method: 'GET',
@@ -1639,9 +1641,6 @@
       form.style.display = 'none';
       fOk.classList.add('on');
       fOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => {
-        window.open('https://www.sympla.com.br/evento/workshop-danca-para-corpos-40/3445557', '_blank');
-      }, 2000);
     })
     .catch(() => {
       btn.disabled = false;
