@@ -1698,7 +1698,11 @@
 
     btnP.addEventListener('click', () => goTo(cur - 1));
     btnN.addEventListener('click', () => goTo(cur + 1));
-    window.addEventListener('resize', () => { syncPad(); goTo(cur); }, { passive: true });
+    let lastInnerW = window.innerWidth;
+    window.addEventListener('resize', () => {
+      syncPad();
+      if (window.innerWidth !== lastInnerW) { lastInnerW = window.innerWidth; goTo(cur); }
+    }, { passive: true });
 
     syncPad();
     activate(0);
