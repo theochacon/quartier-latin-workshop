@@ -531,8 +531,9 @@
     .s-pq { padding: var(--pad) 0; background: var(--off-white); }
     .pq-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: clamp(48px,7vw,96px); align-items: start;
+      gap: clamp(48px,7vw,96px); align-items: stretch;
     }
+    .pq-content { display: flex; flex-direction: column; }
     .pq-content .eye { margin-bottom: 16px; }
     .pq-content .title { font-size: clamp(36px,4vw,56px); margin-bottom: 6px; }
     .pq-intro {
@@ -540,19 +541,25 @@
       line-height: 1.85; color: var(--charcoal);
       margin-bottom: 40px;
     }
-    .pq-list { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+    .pq-list { list-style: none; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
     .pq-item { display: flex; align-items: flex-start; gap: 16px; }
     /* Square check mark — brand style */
     .pq-sq {
       width: 28px; height: 28px; flex-shrink: 0;
       background: var(--bordeaux);
       display: grid; place-items: center;
-      margin-top: 2px;
+      margin-top: 4px;
     }
     .pq-sq svg { width: 13px; height: 13px; stroke: var(--white); fill: none; stroke-width: 2.5; }
     .pq-text strong {
-      display: block; font-size: 14px; font-weight: 700;
-      color: var(--black); margin-bottom: 3px;
+      display: block;
+      font-family: var(--ff-body);
+      font-size: clamp(13px, 1.1vw, 16px);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--black);
+      margin-bottom: 0;
     }
     .pq-text span { font-size: 13px; font-weight: 300; color: #666; line-height: 1.65; }
     .pq-tags {
