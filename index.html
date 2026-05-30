@@ -731,16 +731,13 @@
       box-shadow: 0 24px 64px rgba(0,0,0,0.10);
     }
     .dep-q {
-      font-family: var(--ff-saonara);
-      font-size: clamp(120px,14vw,190px);
-      line-height: 0.72;
-      color: transparent;
-      -webkit-text-stroke: 1.5px rgba(92,28,24,0.18);
-      position: absolute; top: 8px; left: 16px;
-      user-select: none; pointer-events: none;
-      transition: -webkit-text-stroke-color .5s;
+      position: absolute; top: 16px; left: 20px;
+      width: clamp(72px, 8vw, 108px); height: auto;
+      pointer-events: none; user-select: none;
+      transition: opacity .5s;
+      opacity: 0.18;
     }
-    .dep-card.dep-active .dep-q { -webkit-text-stroke-color: rgba(92,28,24,0.30); }
+    .dep-card.dep-active .dep-q { opacity: 0.30; }
     .dep-text {
       font-family: var(--ff-body);
       font-size: clamp(14px,1.35vw,17px);
@@ -1273,7 +1270,7 @@
       <div class="dep-track" id="depTrack">
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Começar o Ballet após os 40 anos foi a melhor decisão que já tomei. Cada aula é um momento de presença absoluta, onde esqueço a rotina, os compromissos e me conecto com a música.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1282,7 +1279,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Após 25 anos de ballet de relativo alto desempenho, e 7 de sedentarismo total, não imaginei que conseguiria voltar a dançar, agora com 43 anos. Meu corpo já bem diferente, tantas inseguranças. Mas consegui! E cada passo das aulas, cada ensaio, é uma plenitude!</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1291,7 +1288,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Voltar a dançar depois de 25 anos foi reencontrar uma parte de mim que estava adormecida. Após os 40, a dança ganhou um significado ainda mais profundo: conexão comigo mesma, com meu corpo e com a arte que sempre esteve dentro de mim.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1300,7 +1297,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">A dança é cura pra mim, sempre foi. Voltar a dançar depois dos 50 anos me trouxe a volta desse remédio tão importante pro corpo e pra alma.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1309,7 +1306,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Voltar a dançar depois de tantos anos é uma experiência fantástica. Mais do que atividade física é um momento de conexão com a Dani de muitos anos atrás, mas que está presente nesse corpo 40+.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1318,7 +1315,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">A dança me reconectou comigo mesmo. Quando retornei, pensei apenas em fazer uma atividade física no qual eu gostasse. Mas fui surpreendida… o que encontrei foi muito além… foi um resgate!</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1327,7 +1324,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Seguir Dançando aos 55 anos é pra mim a certeza da escolha que fiz na vida. A DANÇA nos escolhe, quando nos tornamos disponíveis e o corpo passa a ser um meio de escrita poética. Assim foi e tem sido minha carreira e vida.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1336,7 +1333,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Retomei a dança através das minhas filhas… e, sem perceber, reencontrei também partes lindas de mim que estavam adormecidas pelos caminhos da vida.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1345,7 +1342,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Dançar após os 40 anos é um ato de coragem, mas acima de tudo é um reencontro. Subir no palco hoje e ver a arte se manifestar através do meu corpo não é apenas sobre técnica; é sobre resgatar a minha essência mais sensível.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1354,7 +1351,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Aos 40-50 anos a gente descobre que o corpo guarda segredos que a pressa dos 20 não deixa ouvir. Dançar nessa idade para mim é como abrir um vinho guardado. Você não bebe para ficar tonta, você bebe para sentir cada nota, cada camada que o tempo desenhou.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1363,7 +1360,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Voltar a dançar na maturidade foi algo incrível, pois me conectou novamente com meu corpo e principalmente com a memória afetiva do ballet.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1372,7 +1369,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Eu danço porque no Quartier Latin tudo é sensibilidade e talento. Danço Vivaldi, Handel, Chopin, Debussy mesmo com as limitações físicas de corpos que ultrapassam os 40, 50 anos. Danço porque lá, as coreografias vão muito além da idade e, principalmente, porque tocam a alma de quem dança.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -1381,7 +1378,7 @@
         </div>
 
         <div class="dep-card" data-dep>
-          <div class="dep-q" aria-hidden="true">"</div>
+          <svg class="dep-q" viewBox="25 254 255 225" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M227 379C209 379 194 387 186 399C186 359 218 294 273 263L271 259C211 291 178 358 178 414C178 452 197 474 227 474C254 474 275 453 275 427C275 400 254 379 227 379ZM79 379C61 379 46 387 38 399C38 359 70 294 125 263L123 259C63 291 30 358 30 414C30 452 49 474 79 474C106 474 128 453 128 427C128 400 106 379 79 379Z" fill="none" stroke="#5C1C18" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <p class="dep-text">Desde muito jovem a dança sempre foi uma necessidade visceral, um alimento para meu espírito. Encontrar a Marisa em 2024 e o elenco 40+ do Quartier Latin foi um momento de profunda catarse pessoal onde cada movimento que realizo vem carregado de dores, amores, perdas, esperanças e glórias, onde o corpo físico se entrega profundamente à intensidade do feminino.</p>
           <div class="dep-author">
             <div class="dep-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
