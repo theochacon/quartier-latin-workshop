@@ -732,14 +732,15 @@
     }
     .dep-q {
       font-family: var(--ff-saonara);
-      font-size: clamp(110px,13vw,170px);
+      font-size: clamp(120px,14vw,190px);
       line-height: 0.72;
-      color: var(--bordeaux); opacity: 0.12;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(92,28,24,0.18);
       position: absolute; top: 8px; left: 16px;
       user-select: none; pointer-events: none;
-      transition: opacity .5s;
+      transition: -webkit-text-stroke-color .5s;
     }
-    .dep-card.dep-active .dep-q { opacity: 0.20; }
+    .dep-card.dep-active .dep-q { -webkit-text-stroke-color: rgba(92,28,24,0.30); }
     .dep-text {
       font-family: var(--ff-body);
       font-size: clamp(14px,1.35vw,17px);
