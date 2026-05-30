@@ -541,24 +541,23 @@
       line-height: 1.85; color: var(--charcoal);
       margin-bottom: 40px;
     }
-    .pq-list { list-style: none; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
-    .pq-item { display: flex; align-items: flex-start; gap: 16px; }
+    .pq-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .pq-item { display: flex; align-items: center; gap: 14px; }
     /* Square check mark — brand style */
     .pq-sq {
-      width: 28px; height: 28px; flex-shrink: 0;
+      width: 22px; height: 22px; flex-shrink: 0;
       background: var(--bordeaux);
       display: grid; place-items: center;
-      margin-top: 4px;
     }
-    .pq-sq svg { width: 13px; height: 13px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+    .pq-sq svg { width: 11px; height: 11px; stroke: var(--white); fill: none; stroke-width: 2.5; }
     .pq-text strong {
       display: block;
       font-family: var(--ff-body);
-      font-size: clamp(13px, 1.1vw, 16px);
+      font-size: clamp(10px, 0.85vw, 12px);
       font-weight: 300;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--black);
+      letter-spacing: 0.18em;
+      color: #555;
       margin-bottom: 0;
     }
     .pq-text span { font-size: 13px; font-weight: 300; color: #666; line-height: 1.65; }
