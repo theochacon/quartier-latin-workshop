@@ -30,6 +30,16 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Google Ads tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18204321641"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18204321641');
+  </script>
+  <!-- End Google Ads tag -->
+
   <style>
     /* ═══════════════════════════════════════════════
        FONTES LOCAIS
@@ -1643,6 +1653,20 @@
 
 
 <script>
+  /* ─── GOOGLE ADS CONVERSION ─── */
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') { window.location = url; }
+    };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18204321641/CtOOCMKisrccEOnOv-hD',
+      'value': 1.0,
+      'currency': 'BRL',
+      'event_callback': callback
+    });
+    return false;
+  }
+
   /* ─── NAVBAR ─── */
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 48), { passive: true });
@@ -1702,6 +1726,7 @@
       mode: 'no-cors'
     })
     .then(() => {
+      gtag_report_conversion();
       form.style.display = 'none';
       fOk.classList.add('on');
       fOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
