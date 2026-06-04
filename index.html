@@ -1727,6 +1727,7 @@
     })
     .then(() => {
       gtag_report_conversion();
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
       form.style.display = 'none';
       fOk.classList.add('on');
       fOk.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1795,6 +1796,39 @@
 
     syncPad();
     activate(0);
+  })();
+
+  /* ─── META PIXEL: SCROLL EVENTS ─── */
+  (function () {
+    // ScrolledToForm — dispara uma vez por sessão quando #inscricao entra no viewport
+    const formSection = document.getElementById('inscricao');
+    if (formSection) {
+      const ioForm = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !sessionStorage.getItem('px_form')) {
+            sessionStorage.setItem('px_form', '1');
+            if (typeof fbq !== 'undefined') fbq('trackCustom', 'ScrolledToForm');
+            ioForm.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      ioForm.observe(formSection);
+    }
+
+    // ScrolledToBottom — dispara uma vez por sessão quando o footer entra no viewport
+    const footer = document.querySelector('.footer');
+    if (footer) {
+      const ioFooter = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !sessionStorage.getItem('px_bottom')) {
+            sessionStorage.setItem('px_bottom', '1');
+            if (typeof fbq !== 'undefined') fbq('trackCustom', 'ScrolledToBottom');
+            ioFooter.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+      ioFooter.observe(footer);
+    }
   })();
 </script>
 
